@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual DOM</title>
+</head>
+<body>
+  <script src="dist/bundles/bundle.js"></script>
+  <script>
+    // Experiment with VirtualDOM object
+    const initialView = VirtualDOM.div([], [ 'Hello World' ])
+    const schedule = VirtualDOM.scene(initialView, document.body)
+    let index = 0
+    function changeView() {
+        let newView
+        switch (index) {
+            case 0:
+                newView = VirtualDOM.div([], [
+                    'Hello Virtual DOM',
+                ])
+                index += 1
+                break
+            case 1:
+                newView = VirtualDOM.div([], [
+                    'Hello Virtual DOM',
+                    VirtualDOM.ul([], [
+                        VirtualDOM.li([], [ 'Item one' ])
+                    ])
+                ])
+                index += 1
+                break
+            case 2:
+                newView = VirtualDOM.div([], [
+                    'Hello Virtual DOM',
+                    VirtualDOM.ul([], [
+                        VirtualDOM.li([], [ 'Item one' ]),
+                        VirtualDOM.li([], [ 'Item two' ])
+                    ])
+                ])
+                index = 0
+                break
+        }
+        schedule(newView)
+        
+        setTimeout(changeView, 3000)
+    }
+    changeView()
+  </script>
+</body>
+</html>

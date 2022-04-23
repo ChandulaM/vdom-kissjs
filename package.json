@@ -1,0 +1,40 @@
+{
+  "name": "2022-069",
+  "version": "1.0.0",
+  "description": "To create a frontend JS framework for SPAs that will come with in-built state management",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rd /s /q dist",
+    "clean-all": "npm run clean; rm -rf node_modules",
+    "lint": "eslint --fix './src/**/*.ts'",
+    "webpack": "webpack",
+    "prebuild": "npm run clean",
+    "build": "tsc && npm run webpack",
+    "build:test": "webpack --config webpack.test.config.js",
+    "test": "npm run test:unit",
+    "pretest:unit": "npm run build",
+    "test:unit": "mocha dist/tests/unit/**/*.spec.js",
+    "pretest:integration": "npm run build:test",
+    "test:integration": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.sliit.lk/2022-069/2022-069.git"
+  },
+  "author": "2022-069",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.11.0",
+    "karma": "^6.3.18",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-mocha": "^2.0.1",
+    "mocha": "^9.2.2",
+    "puppeteer": "^13.5.2",
+    "typescript": "^4.6.3",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
